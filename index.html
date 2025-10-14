@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Red Flag Countdown</title>
+  <style>
+    body {
+      background-color: #FF0000;
+      color: #FFFFFF;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+      margin: 0;
+    }
+    #message {
+      font-size: 2em;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+    }
+    #countdown {
+      font-size: 4em;
+    }
+  </style>
+</head>
+<body>
+  <div id="message">RED FLAG 26-1 KICKS OFF IN</div>
+  <div id="countdown">Loading...</div>
+
+  <script>
+    const countDownDate = new Date("Feb 1, 2026 00:00:00").getTime();
+
+    const countdownFunction = setInterval(function() {
+      const now = new Date().getTime();
+      const distance = countDownDate - now;
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("countdown").innerHTML =
+        days + "d " + hours + "h " + minutes + "m " + seconds + "s";
+
+      if (distance < 0) {
+        clearInterval(countdownFunction);
+        document.getElementById("message").innerHTML = "RED FLAG 26-1 IS LIVE!";
+        document.getElementById("countdown").innerHTML = "";
+      }
+    }, 1000);
+  </script>
+</body>
+</html>
